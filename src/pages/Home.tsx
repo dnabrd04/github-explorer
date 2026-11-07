@@ -1,4 +1,5 @@
 import UserProfile from '../components/UserProfile.tsx'
+import UserRepos from '../components/UserRepos.tsx'
 import { useUser } from '../hooks/useUser.ts'
 
 type HomeProps = {
@@ -25,7 +26,12 @@ function Home({ username }: HomeProps) {
     return <p className="content-status">{error}</p>
   }
 
-  return user ? <UserProfile user={user} /> : null
+  return user ? (
+    <>
+      <UserProfile user={user} />
+      <UserRepos key={user.login} username={user.login} />
+    </>
+  ) : null
 }
 
 export default Home
