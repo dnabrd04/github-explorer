@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { githubErrorMessage, githubHeaders } from '../lib/github.ts'
 import type { GithubUser } from '../types/types.ts'
 
 type UserState = {
@@ -21,17 +22,14 @@ export function useUser(username: string) {
 
     fetch(`https://api.github.com/users/${encodeURIComponent(username)}`, {
       signal: controller.signal,
-      headers: {
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
+      headers: githubHeaders,
     })
       .then((response) => {
-        if (response.status === 404) throw new Error('Usuario no encontrado')
-        if (response.status === 403) {
-          throw new Error('Límite de peticiones alcanzado. Inténtalo más tarde.')
+        if (!response.ok) {
+          throw new Error(
+            githubErrorMessage(response.status, 'Usuario no encontrado'),
+          )
         }
-        if (!response.ok) throw new Error(`Error ${response.status}`)
         return response.json()
       })
       .then((data: GithubUser) => {
