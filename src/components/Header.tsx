@@ -2,7 +2,11 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { SearchIcon } from '../assets/icons/SearchIcon.tsx'
 
-function Header() {
+type HeaderProps = {
+  onSearch: (username: string) => void
+}
+
+function Header({ onSearch }: HeaderProps) {
   const [query, setQuery] = useState('')
 
   return (
@@ -13,7 +17,10 @@ function Header() {
       <form
         className="search-form"
         role="search"
-        onSubmit={(event) => event.preventDefault()}
+        onSubmit={(event) => {
+          event.preventDefault()
+          onSearch(query.trim())
+        }}
       >
         <input
           className="search-input"
