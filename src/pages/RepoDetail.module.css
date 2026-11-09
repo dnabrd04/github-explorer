@@ -1,0 +1,281 @@
+.repoDetailPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.repoBackLink {
+  align-self: flex-start;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.repoDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+
+  @media (max-width: 700px) {
+    padding: 20px;
+  }
+}
+
+.repoDetailHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+}
+
+.repoDetailTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.repoDetailName {
+  margin: 0;
+  font-size: 28px;
+  overflow-wrap: anywhere;
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.repoDetailActions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: flex-end;
+  gap: 8px;
+
+  @media (max-width: 700px) {
+    align-items: flex-start;
+  }
+}
+
+.repoActionLink {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.repoDetailStats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.repoDetailStat {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--social-bg);
+  text-align: center;
+
+  dt {
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  dd {
+    margin: 4px 0 0;
+    color: var(--text-h);
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 600;
+  }
+}
+
+.repoDetailMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  list-style: none;
+}
+
+.repoTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.repoTopic {
+  padding: 2px 10px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.repoDetailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+
+  h3 {
+    margin: 0;
+    color: var(--text-h);
+    font-family: var(--heading);
+    font-size: 20px;
+  }
+}
+
+.repoReadmeError {
+  color: var(--error-text);
+}
+
+.repoReadmeEmpty {
+  color: var(--text);
+}
+
+.repoReadme {
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 20px 0 8px;
+    color: var(--text-h);
+    font-family: var(--heading);
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 19px;
+  }
+
+  h4 {
+    font-size: 17px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  ul,
+  ol {
+    margin: 10px 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin: 4px 0;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  code {
+    display: inline;
+    padding: 2px 6px;
+    font-size: 14px;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 14px;
+    border-radius: 10px;
+    background: var(--code-bg);
+
+    code {
+      display: block;
+      padding: 0;
+      background: none;
+    }
+  }
+
+  blockquote {
+    margin: 12px 0;
+    padding-left: 14px;
+    border-left: 3px solid var(--border);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+  }
+
+  hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+}

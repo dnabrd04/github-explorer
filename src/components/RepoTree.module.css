@@ -1,0 +1,43 @@
+.repoTree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.repoTreeEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--text);
+
+  &:hover {
+    background: var(--social-bg);
+  }
+}
+
+.repoTreeDir .repoTreeName {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.repoTreeName {
+  font-family: var(--mono);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.repoTreeSize {
+  flex-shrink: 0;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.repoTreeEmpty {
+  color: var(--text);
+}
