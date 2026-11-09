@@ -1,4 +1,5 @@
 import type { GithubContentEntry } from '../types/types.ts'
+import styles from './RepoTree.module.css'
 
 type RepoTreeProps = {
   entries: GithubContentEntry[]
@@ -12,7 +13,7 @@ function formatSize(kb: number) {
 export function RepoTree({ entries }: RepoTreeProps) {
   if (entries.length === 0) {
     return (
-      <p className="repo-tree-empty">
+      <p className={styles.repoTreeEmpty}>
         No se pudo obtener el contenido del repositorio.
       </p>
     )
@@ -24,21 +25,25 @@ export function RepoTree({ entries }: RepoTreeProps) {
   })
 
   return (
-    <ul className="repo-tree">
-      {sorted.map((entry) => (
-        <li
-          key={entry.path}
-          className={`repo-tree-entry repo-tree-${entry.type}`}
-        >
-          <span className="repo-tree-name">
-            {entry.name}
-            {entry.type === 'dir' ? '/' : ''}
-          </span>
-          {entry.type === 'file' && (
-            <span className="repo-tree-size">{formatSize(entry.size)}</span>
-          )}
-        </li>
-      ))}
+    <ul className={styles.repoTree}>
+      {sorted.map((entry) => {
+        const entryClassName =
+          entry.type === 'dir'
+            ? `${styles.repoTreeEntry} ${styles.repoTreeDir}`
+            : styles.repoTreeEntry
+
+        return (
+          <li key={entry.path} className={entryClassName}>
+            <span className={styles.repoTreeName}>
+              {entry.name}
+              {entry.type === 'dir' ? '/' : ''}
+            </span>
+            {entry.type === 'file' && (
+              <span className={styles.repoTreeSize}>{formatSize(entry.size)}</span>
+            )}
+          </li>
+        )
+      })}
     </ul>
   )
 }

@@ -1,4 +1,5 @@
 import type { GithubUser } from '../types/types.ts'
+import styles from './UserProfile.module.css'
 
 type UserProfileProps = {
   user: GithubUser
@@ -16,45 +17,45 @@ function getBlogUrl(blog: string) {
 
 function UserProfile({ user }: UserProfileProps) {
   return (
-    <article className="user-profile">
-      <header className="user-profile-header">
+    <article className={styles.userProfile}>
+      <header className={styles.userProfileHeader}>
         <img
-          className="user-avatar"
+          className={styles.userAvatar}
           src={user.avatar_url}
           alt={`Avatar de ${user.login}`}
           width={120}
           height={120}
         />
-        <div className="user-identity">
+        <div className={styles.userIdentity}>
           <h2>{user.name ?? user.login}</h2>
           <a
-            className="user-login"
+            className={styles.userLogin}
             href={user.html_url}
             target="_blank"
             rel="noreferrer"
           >
             @{user.login}
           </a>
-          {user.bio && <p className="user-bio">{user.bio}</p>}
+          {user.bio && <p className={styles.userBio}>{user.bio}</p>}
         </div>
       </header>
 
-      <dl className="user-stats">
-        <div className="user-stat">
+      <dl className={styles.userStats}>
+        <div className={styles.userStat}>
           <dt>Seguidores</dt>
           <dd>{user.followers.toLocaleString('es-ES')}</dd>
         </div>
-        <div className="user-stat">
+        <div className={styles.userStat}>
           <dt>Siguiendo</dt>
           <dd>{user.following.toLocaleString('es-ES')}</dd>
         </div>
-        <div className="user-stat">
+        <div className={styles.userStat}>
           <dt>Repositorios públicos</dt>
           <dd>{user.public_repos.toLocaleString('es-ES')}</dd>
         </div>
       </dl>
 
-      <ul className="user-details">
+      <ul className={styles.userDetails}>
         {user.company && <li>Empresa: {user.company}</li>}
         {user.location && <li>Ubicación: {user.location}</li>}
         {user.blog && (

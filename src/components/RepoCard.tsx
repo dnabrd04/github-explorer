@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
+import shared from '../styles/shared.module.css'
 import type { GithubRepo } from '../types/types.ts'
+import styles from './RepoCard.module.css'
 
 type RepoCardProps = {
   repo: GithubRepo
@@ -7,18 +9,20 @@ type RepoCardProps = {
 
 function RepoCard({ repo }: RepoCardProps) {
   return (
-    <li className="repo-card">
-      <Link className="repo-card-link" to={`/repos/${repo.full_name}`}>
-        <header className="repo-card-header">
-          <h3 className="repo-name">{repo.name}</h3>
-          {repo.fork && <span className="repo-fork-badge">Fork</span>}
+    <li className={styles.repoCard}>
+      <Link className={styles.repoCardLink} to={`/repos/${repo.full_name}`}>
+        <header className={styles.repoCardHeader}>
+          <h3 className={styles.repoName}>{repo.name}</h3>
+          {repo.fork && (
+            <span className={shared.repoForkBadge}>Fork</span>
+          )}
         </header>
 
         {repo.description && (
-          <p className="repo-description">{repo.description}</p>
+          <p className={shared.repoDescription}>{repo.description}</p>
         )}
 
-        <ul className="repo-meta">
+        <ul className={styles.repoMeta}>
           <li>{repo.language ?? 'Sin lenguaje'}</li>
           <li>{repo.stargazers_count.toLocaleString('es-ES')} estrellas</li>
           <li>{repo.forks_count.toLocaleString('es-ES')} forks</li>

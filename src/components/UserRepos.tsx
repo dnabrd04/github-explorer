@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useUserRepos } from '../hooks/useUserRepos.ts'
+import shared from '../styles/shared.module.css'
 import RepoCard from './RepoCard.tsx'
+import styles from './UserRepos.module.css'
 
 type UserReposProps = {
   username: string
@@ -14,46 +16,51 @@ function UserRepos({ username }: UserReposProps) {
   )
 
   return (
-    <section className="repos-section" aria-labelledby="repos-title">
-      <header className="repos-header">
+    <section className={styles.reposSection} aria-labelledby="repos-title">
+      <header className={styles.reposHeader}>
         <h2 id="repos-title">Repositorios</h2>
       </header>
 
       {loadingRepos && (
-        <p className="content-status">Cargando repositorios...</p>
+        <p className={shared.contentStatus}>Cargando repositorios...</p>
       )}
 
-      {!loadingRepos && error && <p className="content-status">{error}</p>}
+      {!loadingRepos && error && (
+        <p className={shared.contentStatus}>{error}</p>
+      )}
 
       {!loadingRepos && !error && repos.length === 0 && (
-        <p className="repos-empty">
+        <p className={styles.reposEmpty}>
           Este usuario no tiene repositorios públicos.
         </p>
       )}
 
       {!loadingRepos && !error && repos.length > 0 && (
         <>
-          <ul className="repo-list">
+          <ul className={styles.repoList}>
             {repos.map((repo) => (
               <RepoCard key={repo.id} repo={repo} />
             ))}
           </ul>
 
-          <nav className="pagination" aria-label="Paginación de repositorios">
+          <nav
+            className={styles.pagination}
+            aria-label="Paginación de repositorios"
+          >
             <button
               type="button"
-              className="pagination-button"
+              className={styles.paginationButton}
               onClick={() => setPage((current) => Math.max(1, current - 1))}
               disabled={page === 1}
             >
               Anterior
             </button>
-            <span className="pagination-status">
+            <span className={styles.paginationStatus}>
               Página {page} de {totalPages ?? page}
             </span>
             <button
               type="button"
-              className="pagination-button"
+              className={styles.paginationButton}
               onClick={() => setPage((current) => current + 1)}
               disabled={!hasNextPage}
             >
